@@ -1,0 +1,782 @@
+/*
+
+this project is an attempt to modernize the monthly newsletter of my local yarn shop, The Purple Purl, who's newsletter currently looks like this - http://www.thepurplepurl.com/newsletter/. Most of the content is taken straight from that newsletter with minor alterations for stylistic purposes. The color scheme is based around their logo's signature purple. If I use this as part of a portfolio I'll replace the images and content with something more generic first.
+
+*/
+
+
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:700;}dfn{font-style:italic;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace, serif;font-size:1em;}pre{white-space:pre-wrap;word-wrap:break-word;}q{quotes:\201C \201D \2018 \2019;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-.5em;}sub{bottom:-.25em;}img{border:0;}svg:not(:root){overflow:hidden;}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,html input[type=button],/* 1 */
+input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}button[disabled],input[disabled]{cursor:default;}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}body,figure{margin:0;}legend,button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+
+.clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/*page-wide styling--------------------------------------*/
+
+
+html {
+	font-size: 16px;
+	line-height: 1.6;
+	font-family: 'Lato', sans-serif;
+}
+
+h1 {
+	font-size : 2.5rem;
+	text-align: center;
+	border-bottom: 5px double white;
+}
+
+h2 {
+	text-align: center;
+	font-size: 2rem;
+}
+
+h3 {
+	font-size: 1.5rem;
+}
+
+h4 {
+	font-size: 1.33rem;
+}
+
+h1, h2, h3 {
+	font-family: 'Sanchez', serif;
+	letter-spacing: 2.25px;
+}
+
+h4, .logo p, /*.menu,*/ a {
+	font-family: 'Montserrat', sans-serif;
+}
+
+p {
+	letter-spacing: 1px;
+}
+
+strong {
+	font-weight: 700;
+}
+
+a {
+	text-decoration: none;
+	color: #8A52AB;
+	font-weight: 700;
+	padding: 0 3px;
+	transition: all .3s;
+}
+
+a:hover {
+	background: rgba(206, 135, 255, 0.6);
+	color: rgb(43, 26, 54);
+}
+
+
+.menu {
+	text-transform: lowercase;
+}
+
+div.wrapper {
+	width: 80%;
+	margin: 0 auto;
+	padding: 5%;
+	max-width: 1280px;
+}
+
+section.purple, section.purple .heading h2 {
+	background: rgb(72, 40, 89);
+	color: white;
+}
+
+section.white, section.white .heading h2 {
+	color: rgb(72, 40, 89);
+	background: white;
+}
+
+section.grey,  section.grey .heading h2 {
+	background: rgb(186, 186, 204);
+	color: rgb(43, 26, 54);
+}
+
+img {
+	border-radius: 5px;	
+	max-width: 100%;
+}
+
+
+/*SECTION HEADERS----------------------------------------*/
+/*note: the section headers are all contained in a separate wrapper div in order to keep the section content from overlapping.*/
+
+
+.heading {
+	position: relative;	
+	margin-top: 0;
+	height: 30px;
+}
+
+.heading h2 { 
+	position: absolute;
+	width: 30%;
+	top: -25px;
+	left: 35%;
+	text-align: center;
+	margin-bottom: 3%;
+}
+
+
+
+/*note: if I were a graphic designer, I'd make these heading borders pieces of yarn - but I'm not, so boring lines it is*/
+
+
+section.purple .heading {
+	border-bottom: 10px double white;
+}
+
+section.grey .heading {
+	border-bottom: 10px double rgb(43, 26, 54);
+}
+
+section.white .heading {
+	border-bottom: 10px double rgb(72, 40, 89);	
+}
+
+section .wrapper2 {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+
+
+
+
+/*NAVIGATION ---------------------------------------------*/
+
+
+nav {
+	background: rgb(72, 40, 89);
+	padding: 10px;
+	color: white;
+	width: 100%;
+}
+
+
+.menu ul {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.menu ul li {
+	padding: 0;
+	flex: 1 0 auto;
+}
+
+.newsMain {
+	position: relative;
+}
+
+ul.newsSub {
+	flex-direction: column;
+	opacity: 0;
+	position: absolute;
+	background: rgb(72, 40, 89);
+	transition: all .5s;
+	text-align: center;
+	right: 30%;
+	width: 40%;
+	flex: 1 0 auto;
+}
+
+ul.newsSub li {
+	padding: 5px;
+}
+
+li.newsMain:hover ul.newsSub {
+	opacity: 1;
+}
+
+
+
+/*HEADER - IMAGE AND TAGLINE----------------------------------*/
+
+header {
+	background: rgb(72, 40, 89) url(images/15951-lt.jpg); 
+	background-size: cover;
+	height: 100vh;
+	display: flex;
+	color: white;
+	flex-direction: column;
+	position: relative;
+}
+
+/*note : the header image is a stock photo - if I use this page in a portfolio, replace it with something free first*/
+
+header p {
+	font-size: 1rem;
+}
+
+.headline {
+	display: flex;
+	margin: auto;
+	background: rgb(72, 40, 89);
+	padding: 2%;
+	border-radius: 5px;
+}
+
+.logo {
+	margin: auto;
+	padding-right: 15px;
+}
+
+.title {
+	margin: auto;
+	text-align: center;
+	text-shadow: 0 0 5px rgb(72, 40, 89);
+}
+
+.edition {
+	position: absolute;
+	background: rgb(72, 40, 89);
+	font-size: 1.25rem;
+	color: white;	
+	padding: 1%;
+	text-align: center;
+	border-radius: 5px 0 0 0;
+}
+
+.edition {
+	bottom: 0;
+	right: 0;
+	width: 150px;
+}
+
+
+/*NEWS - HOURS-------------------------------------------*/
+
+.hours {
+	text-align: center;	
+}
+
+
+
+/*NEWS - KITS----------------------------------------*/
+
+div.kitWrapper {
+	display: flex;
+	flex-direction: row;
+}
+
+div.kit {
+	clear: both;
+	flex: 1 0 33.33%;
+	padding: 2%;
+	border-radius: 5px;
+	border: 5px double rgb(46, 23, 54);
+}
+
+div.kit2 {
+	margin: 0 1%;
+}
+
+div.kit p {
+	margin-top: 0;
+	font-size: .95rem;
+	letter-spacing: 0;
+}
+
+div.kitImg {
+	float: left;
+	position: relative;
+	margin-right: 4%;
+	margin-top: 4%;
+}
+
+div.kitImg img.kit {	
+	display: block;
+}
+
+.kitText {
+	opacity: 0;
+	position: absolute;
+	top:0;
+	width: 100%;
+	height: 100%;
+	color: white;
+	font-weight: 700;
+	font-size: 1.15rem;
+	text-align: center;
+	transition: all .5s;
+	background: rgba(0,0,0,0.5);
+	border-radius: 5px
+}
+
+.kitText p {
+	padding-top: 15%;
+}
+
+div.kitImg:hover .kitText {
+	opacity: 1;
+}
+
+
+
+/*SALE-------------------------------------------------*/
+
+.saleYarn, .saleStuff {
+	display:flex;
+	flex-wrap: wrap;
+	max-width: 100%;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.saleYarnImg {
+	flex: 1 0 33.3%;
+	text-align: center;	
+}
+
+.saleYarnImg a, .saleStuffImg {
+	transition: all .5s;
+}
+
+.saleYarnImg a:hover  {
+	opacity: .5;
+	background: none;
+}
+
+.saleStuff {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.saleStuffImg {
+	position: relative;
+	max-width: 50%;
+	flex: 1 0 50%;
+	text-align: center;
+}
+
+.saleStuffText {
+	opacity: 0;
+	position: absolute;
+	top:0;
+	width: 100%;
+	height: 100%;
+	color: white;
+	font-weight: 700;
+	font-size: 1.15rem;
+	text-align: bottom;
+	transition: all .5s;
+	background: rgba(0,0,0,0.5);
+	border-radius: 5px
+}
+
+
+.saleStuffImg:hover .saleStuffText {
+	opacity: 1;
+}
+
+
+/*CLASSES---------------------------------------*/
+
+.classList {
+	display: flex;
+	flex-wrap: wrap;
+/*	align-items: stretch;*/
+/*	justify-content: center;*/
+}
+
+
+div.class {
+	flex: 1 0 33.33%;
+	padding: 5px;
+}
+
+.register {
+	margin-top: 15%;
+}
+
+button.classes {
+	border: 1px solid rgb(186, 186, 204);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	background: rgba(186, 186, 204, 0.8);
+	transition: all .5s;
+	width: 100%;
+	margin: 2% auto;
+	height: 30%;
+	padding: 2%;
+	border-radius: 5px;
+	font-weight: 700;
+}
+
+button.classes:hover, button.classes:focus {
+	background: rgba(186, 186, 204, 0.3);
+	color: rgb(186, 186, 204);
+}
+ 
+
+/*KNIT ALONG-----------------------------------------*/
+
+div.kal1 {
+	float: left;
+	padding-right: 1%;
+	width: 75%;
+}
+
+aside.kal {
+	float: left;
+	width: 25%;
+	border: 5px double rgb(72, 40, 89);
+	border-radius: 10px;
+	padding: 2%;
+	background: rgba(206, 135, 255, 0.7);
+	margin-bottom: 3%;
+	font-size: .95rem;
+}
+
+aside img {
+	max-width: 100%;
+}
+
+aside ul {
+	list-style: none;
+	text-align: center;
+	padding: 0;
+}
+
+figure.miko {
+	float: left;
+	width: 35%;
+	padding: 1%;
+	margin-right: 2%;
+}
+
+figcaption {
+	font-size: .8rem;
+	font-style: italic;
+	text-align: center;
+}
+
+img.kalImg1 {
+	float: left;
+	margin: 15px 15px 15px 0;
+}
+
+img.kalImg2, img.po5 {
+	float: right;
+}
+
+
+/*CAFE NEWS----------------------------------*/
+
+
+section.cafe {
+	clear: both;
+}
+
+div.cafeNews {
+	display: flex;
+	flex-wrap: wrap;
+	width: 80%;
+	margin: auto;
+	text-align: center;
+}
+
+div.cafe {
+	flex: 1 0 auto;
+}
+
+
+/*FOOTER----------------------------------*/
+
+footer .wrapper2 {
+	text-align: center;
+}
+
+.contact ul {
+	display: flex;
+	list-style: none;
+	padding: 0;
+}
+
+.contact ul li {
+	padding: 0 1%;
+	flex: 1 0 30%;
+}
+
+.footerMiddle {
+	display: flex;
+}
+
+.half {
+	flex: 1 0 50%;
+}
+
+input, textarea {
+	border-radius: 5px;
+	padding: 8px;
+	margin: 0 auto 2% auto;
+	border: 1px solid rgb(72, 40, 89);
+	background: rgba(186, 186, 204, 0.5);
+	transition: all .5s;
+	outline: 0;
+	color: #111;
+}
+
+input:focus, textarea:focus {
+	background: white;
+	border: 1px solid rgb(43, 26, 54);
+}
+
+textarea, input[type=submit] {
+	width: 90%;
+}
+
+input[type=text], input[type=email] {
+	width: 43.70%;
+}
+
+input[type=text] {
+	margin-right: 2%;
+}
+
+input[type=submit] {
+	border: 1px solid rgb(186, 186, 204);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+input[type=submit]:focus, input[type=submit]:hover {
+	background: rgb(186, 186, 204);
+	font-weight: 700;
+}
+
+i.fa {
+	color: white;
+	font-size: 3rem;
+	padding: 3px;
+	margin: 0 5px;
+}
+
+.social {
+	margin-top: 3%;
+	margin-bottom: 5%;
+}
+
+.social a {
+	display: inline-block;
+	height: 100%;
+	border-radius: 5px;
+	margin: 0 1%;
+	transition: all .5s;
+}
+
+.social a:hover {
+	background: rgba(206, 135, 255, 0.6);
+	color: rgb(43, 26, 54);
+}
+
+#subscribe {
+	background: rgba(206, 135, 255, 0.8);
+	font-weight: 700;
+}
+
+#unsubscribe { 
+	background: rgb(72, 40, 89);
+	color: rgb(186, 186, 204);
+}
+
+#subscribe:focus, #subscribe:hover {
+	background: rgb(206, 135, 255);
+	box-shadow: 0 0 10px rgb(72, 40, 89);
+}
+
+#unsubscribe:focus, #unsubscribe:hover {
+	box-shadow: inset 0 0 15px rgb(43, 26, 54);
+	text-shadow: 0 0 15px rgb(43, 26, 54);
+}
+
+
+
+
+/*MEDIA QUERIES*/
+
+
+	@media (max-width: 1080px) {
+		div.wrapper {
+			width: 90%;
+		}
+
+		div.wrapper {
+			padding-bottom:5%;
+		}
+
+	}
+
+	@media (max-width: 980px) {
+
+		html {
+			font-size: 14px;
+		}
+
+		div.wrapper {
+			width: 100%;
+		}
+
+		div.kal1 {
+			width: 60%;
+		}
+
+		aside.kal {
+			width: 40%;
+		}
+
+		ul.newsSub {
+			right: 20%;
+			width: 60%;
+		}
+
+		.footerMiddle {
+			flex-direction:column;
+		}
+
+		.half {
+			flex: 1 0 auto;
+		}
+	}
+
+
+
+
+	@media (max-width: 640px) {
+
+		h3 {
+			text-align: center;
+		}
+
+		div.kal1 {
+			width: 100%;
+		}
+
+		aside.kal {
+			width: 100%;
+		}
+
+		aside.kal img {
+			display: block;
+			margin: 0 auto;
+		}
+
+		img.kalImg1, img.kalImg2 {
+			width: 50%;
+		}
+
+		div.class img {
+			display: none;		
+		}
+
+		div.class h4, div.class p {
+			margin-bottom: 0;
+		}
+
+		div.classList, div.kitWrapper {
+			flex-direction: column;
+		}
+
+		div.kitImg {
+			margin-right: 2%;
+			margin-top: 0;
+		}
+
+		div.kit2 {
+			margin: 2% 0;
+		}
+
+		.register {
+			margin-top: 1%;
+		}
+
+		ul.newsSub {
+			right: 0%;
+			width: 100%;
+		}
+
+		.saleYarnImg {
+			flex: 1 0 50%;
+		}
+
+		.contact ul {
+			flex-direction: column;
+		}
+
+		.contact ul li {
+			flex: 1 0 auto;
+		}
+
+		.heading h2 { 
+			width: 40%;
+			left: 30%;
+		}
+
+		div.cafeNews {
+			width: 100%;
+		}
+
+		div.cafe {
+			flex: 1 0 90%;
+		}
+	}
+
+
+	@media (max-width: 480px) {
+
+		html {
+			font-size: 12px;
+		}
+
+		.menu ul {
+			flex-direction: column;
+			flex-wrap: wrap;
+			text-align: left;
+			font-size: 1.2rem;
+		}
+
+		ul.newsSub {
+			flex-direction: row;
+			left: 10%;
+			top: 0;
+			width: 50%;
+			flex: 1 0 ;
+		}
+
+		ul.newsSub li {
+			padding: 0 5%;
+		}
+
+		.heading h2 { 
+			width: 60%;
+			left: 20%;
+			top: -15px;
+		}
+
+	}
+
+		@media (max-width: 365px) {
+/*		footer .heading h2 { 
+			width: 70%;
+			left: 15%;
+			top: -15px;
+			font-size: 2.3rem;
+		}*/
+
+		footer h3 {
+			padding-top: 50px;
+		}
+
+			
+	}
+
+
+
